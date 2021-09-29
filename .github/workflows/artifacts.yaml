@@ -13,7 +13,7 @@ jobs:
   # These images are created as it is prerequisite for the schema deployment via harness that every service should have an integration test yaml file generated as manifest into fabric-deployments repo
   push-images:
     if: github.event.workflow_run.conclusion == 'success'
-    runs-on: [self-hosted, fabric]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
