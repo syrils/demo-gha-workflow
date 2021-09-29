@@ -1,3 +1,4 @@
+SHELL=/bin/bash
 
 .PHONY: test
 test: ## Runs unit tests and generates a coverage file at coverage.out
