@@ -7,15 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.ref, 'tags/*/stmt-') == false
     steps:
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '1.13'
       - name: Checkout
         uses: actions/checkout@v2
       # Fetch all refs and full history for pull request analysis and blame information, respectively
       - run: git fetch --prune --unshallow
 
-      - uses: actions/setup-go@v2
-        with:
-          go-version: '1.13'
-
       - name: Run test
-        shell: bash
         run: make test
