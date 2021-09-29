@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	"github.com/rs/zerolog/log"
 )
 
 func main() {
@@ -9,9 +9,10 @@ func main() {
 	if err != nil {
 		return
 	}
-	log.Print(msg)
+	log.Info().Msg(msg)
 }
 
 func someFunc() (string, error) {
+	log.Info().Msg("Inside some func")
 	return "dummy", nil
 }

@@ -15,5 +15,7 @@ jobs:
       # Fetch all refs and full history for pull request analysis and blame information, respectively
       - run: git fetch --prune --unshallow
 
-      - name: Run test
+      - name: Unit Tests
+        env:
+          GOPROXY: "https://proxy.golang.org"
         run: make test
