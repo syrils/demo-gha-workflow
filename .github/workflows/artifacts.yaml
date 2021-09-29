@@ -24,6 +24,7 @@ jobs:
       - name: Check sha
         id: check_sha
         run: |
+          echo "The git command output is $(git tag --points-at ${{ github.sha }})"
           if [[ "$(git tag --points-at ${{ github.sha }})" == v* ]]; then
             echo "::set-output name=is_tagged::true"
           fi
