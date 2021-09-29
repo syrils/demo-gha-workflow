@@ -9,8 +9,9 @@ on:
       - 'hotfix/[0-9]+.[0-9]+.[0-9]+/**'
       - main
       - master
-    tags:
-      - v*.*.*
+    push:
+      tags: v[1-9]+.[0-9]+.[0-9]+
+
 jobs:
   # These images are created as it is prerequisite for the schema deployment via harness that every service should have an integration test yaml file generated as manifest into fabric-deployments repo
   push-images:
