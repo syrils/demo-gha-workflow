@@ -1,0 +1,40 @@
+name: Deploy copytrigger
+
+on:
+  workflow_run:
+    workflows:
+      - Prepare Artifacts
+    branches: 
+      - main
+      - master
+    types:
+      - completed
+
+jobs:
+  generate-manifests:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: [self-hosted, fabric]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Check sha
+        id: check_sha
+        run: |
+          if [[ "$(git tag --points-at ${{ github.sha }})" == v* ]]; then
+          echo "::set-output name=is_tagged::true"
+          fi
+      - name: Get version
+        if: steps.check_sha.outputs.is_tagged == 'true'
+        id: get_version
+        run: |
+          tag=$(git tag --points-at ${{ github.sha }})
+          echo "::set-output name=version::${tag##*$'\n'}"
+      - name: Generate token
+        id: generate_token
+        uses: docker://fabric-github-actions.artifactory.gcp.anz/app-token:v1
+        with:
+          appId: ${{ secrets.FABRIC_APP_ID }}
+          privateKey: ${{ secrets.FABRIC_APP_PEM }}
+
