@@ -19,6 +19,3 @@ jobs:
       - name: Run test
         shell: bash
         run: make test
-        env:
-          GO111MODULE: "on"
-          GOFLAGS: "-mod=vendor"
