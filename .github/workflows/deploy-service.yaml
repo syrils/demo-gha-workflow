@@ -1,4 +1,4 @@
-name: Deploy copytrigger
+name: Deploy Service
 
 on:
   workflow_run:
@@ -31,10 +31,4 @@ jobs:
         run: |
           tag=$(git tag --points-at ${{ github.sha }})
           echo "::set-output name=version::${tag##*$'\n'}"
-      - name: Generate token
-        id: generate_token
-        uses: docker://fabric-github-actions.artifactory.gcp.anz/app-token:v1
-        with:
-          appId: ${{ secrets.FABRIC_APP_ID }}
-          privateKey: ${{ secrets.FABRIC_APP_PEM }}
 
