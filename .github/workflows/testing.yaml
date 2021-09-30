@@ -18,4 +18,6 @@ jobs:
       - name: Unit Tests
         env:
           GOPROXY: "https://proxy.golang.org"
-        run: make test
+        run: |
+          echo "Tag is: ${GITHUB_REF#refs/*/}"
+          make test
