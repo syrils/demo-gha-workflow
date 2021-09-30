@@ -1,6 +1,15 @@
 name: Testing
 on:
+  pull_request:
+    branches:
+      - "*"
   push:
+    branches:
+      - 'hotfix/[0-9]+.[0-9]+.[0-9]+/**'
+      - main
+      - master
+    tags:
+      - v*.*.*
 
 jobs:
   test-coverage:
