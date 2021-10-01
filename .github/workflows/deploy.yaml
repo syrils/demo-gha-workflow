@@ -17,7 +17,8 @@ jobs:
           ref: ${{ github.ref }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           check-name: 'quality-gate'
-          wait-interval: 10
+          wait-interval: 20
+          allowed-conclusions: success
 
   generate-manifests:
     runs-on: ubuntu-latest
