@@ -19,4 +19,5 @@ jobs:
           GOPROXY: "https://proxy.golang.org"
         run: |
           echo "Output of Ref is: ${{github.ref}}"
+          echo "Output of SHA is: ${{github.sha}}"
           make test
