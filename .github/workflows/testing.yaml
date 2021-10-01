@@ -5,7 +5,6 @@ on:
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
-    if: contains(github.ref, 'tags/*/stmt-') == false
     steps:
       - uses: actions/setup-go@v2
         with:
@@ -19,5 +18,5 @@ jobs:
         env:
           GOPROXY: "https://proxy.golang.org"
         run: |
-          echo "Tag is: ${GITHUB_REF#refs/*/}"
+          echo "Output of Ref is: ${{github.ref}}"
           make test
