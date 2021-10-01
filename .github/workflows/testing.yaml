@@ -21,3 +21,17 @@ jobs:
           echo "Output of Ref is: ${{github.ref}}"
           echo "Output of SHA is: ${{github.sha}}"
           make test
+
+  bb-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep for few seconds
+        run: sleep 45s
+        shell: bash
+
+  quality-gate:
+    runs-on: ubuntu-latest
+    needs: [test-coverage, bb-test]
+    steps:
+      - name: Wait for quality gate
+        run: echo "All checks completed"

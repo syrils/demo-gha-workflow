@@ -16,7 +16,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          check-name: 'test-coverage'
+          check-name: 'quality-gate'
           wait-interval: 10
 
   generate-manifests:
