@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        if: contains(github.ref, 'refs/tags/v.')
+        if: contains(github.ref, 'refs/tags/v')
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
