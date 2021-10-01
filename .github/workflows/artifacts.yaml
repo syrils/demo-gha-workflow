@@ -9,7 +9,7 @@ on:
 jobs:
   # These images are created as it is prerequisite for the schema deployment via harness that every service should have an integration test yaml file generated as manifest into fabric-deployments repo
   push-images:
-    if: github.event.workflow_run.conclusion == 'success' && startsWith(github.ref, 'refs/tags/v')
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -20,6 +20,7 @@ jobs:
         id: check_sha
         run: |
           echo "Tag is: ${GITHUB_REF#refs/*/}"
+          echo "startsWith(github.ref, 'refs/tags/v')"
           if [[ "$(git tag --points-at ${{ github.sha }})" == v* ]]; then
             echo "::set-output name=is_tagged::true"
           fi
