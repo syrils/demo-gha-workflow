@@ -16,7 +16,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          check-name: 'quality-gate'
+          check-name: 'Quality Gate'
           wait-interval: 20
           allowed-conclusions: success
 
