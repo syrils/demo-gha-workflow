@@ -20,4 +20,5 @@ jobs:
           GOPROXY: "https://proxy.golang.org"
         run: |
           echo "Tag is: ${GITHUB_REF#refs/*/}"
+          echo "Tag is: ${github.ref}"
           make test
