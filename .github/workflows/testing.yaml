@@ -30,12 +30,13 @@ jobs:
         shell: bash
 
   quality-gate:
+    name: Quality Gate
     runs-on: ubuntu-latest
     steps:
       - name: Wait for other checks to succeed
         uses: lewagon/wait-on-check-action@master
         with:
           ref: ${{ github.ref }}
-          running-workflow-name: 'quality-gate'
+          running-workflow-name: 'Quality Gate'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
