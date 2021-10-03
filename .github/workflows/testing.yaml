@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Sleep for few seconds
-        run: sleep 45s
+        run: sleep 60s
         shell: bash
 
   quality-gate:
