@@ -5,7 +5,7 @@ name: Deploy
       - v[0-9].[0-9]+.[0-9]+
 
 jobs:
-  wait-on-checks:
+  wait-for-check-name:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -14,11 +14,11 @@ jobs:
       - name: Wait on tests
         uses: lewagon/wait-on-check-action@master
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.sha }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          check-name: 'Quality Gate'
+          check-name: quality-gate
           wait-interval: 10
-          allowed-conclusions: success
+          running-workflow-name: wait-for-check-name
 
   generate-manifests:
     runs-on: ubuntu-latest
