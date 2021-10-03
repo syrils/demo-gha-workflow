@@ -46,5 +46,6 @@ jobs:
         with:
           ref: ${{ github.ref }}
           check-name: 'Quality Gate'
+          running-workflow-name: wait-for-quality-gate
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
