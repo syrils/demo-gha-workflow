@@ -16,7 +16,7 @@ jobs:
         with:
           ref: ${{ github.ref }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          running-workflow-name: wait-for-check-name
+          check-name:  'Wait for testing'
           wait-interval: 10
 
   generate-manifests:
