@@ -18,7 +18,6 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           check-name: quality-gate
           wait-interval: 10
-          running-workflow-name: wait-for-check-name
 
   generate-manifests:
     runs-on: ubuntu-latest
