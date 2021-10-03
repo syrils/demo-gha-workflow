@@ -33,5 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test-coverage, bb-test]
     steps:
-      - name: complete
-        run: echo "All checks completed"
+      - name: Wait for other checks to succeed
+        uses: lewagon/wait-on-check-action@v1.0.0
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: 'quality-gate'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
