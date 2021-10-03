@@ -31,7 +31,6 @@ jobs:
 
   quality-gate:
     runs-on: ubuntu-latest
-    needs: [test-coverage, bb-test]
     steps:
       - name: Wait for other checks to succeed
         uses: lewagon/wait-on-check-action@v1.0.0
