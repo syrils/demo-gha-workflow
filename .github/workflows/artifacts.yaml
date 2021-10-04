@@ -33,10 +33,10 @@ jobs:
           echo "::set-output name=version::${tag##*$'\n'}"
   demo-reusable-step:
     runs-on: ubuntu-latest
-    name: A demo workflow
+    name: Push Images
     steps:
       - uses: actions/checkout@v1
       - name: Reuse a Step
-        uses: ./.github
+        uses: ./.github/workflows/common/push-images
         with:
           version: ${GITHUB_REF#refs/*/}

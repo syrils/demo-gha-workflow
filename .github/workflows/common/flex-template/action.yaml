@@ -1,5 +1,5 @@
-name: 'Prepare Artifacts'
-description: 'Prepare Artifacts'
+name: 'Flex Template'
+description: 'Build Flex Template'
 inputs:
   version:  # id of input
     description: 'version'
@@ -7,7 +7,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Print Version
+    - name: Do Some Job
       shell: bash
       run: |
         echo Version is ${{ inputs.version }}.

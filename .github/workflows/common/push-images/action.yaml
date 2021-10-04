@@ -1,0 +1,14 @@
+name: 'Push Images'
+description: 'Push Images'
+inputs:
+  version:  # id of input
+    description: 'version'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Do Some Job
+      shell: bash
+      run: |
+        echo Version is ${{ inputs.version }}.
+        echo "Output of Ref is: ${{github.ref}}"
