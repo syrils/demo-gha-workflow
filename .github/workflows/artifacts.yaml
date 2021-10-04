@@ -31,7 +31,7 @@ jobs:
           tag=$(git tag --points-at ${{ github.sha }})
           echo "::set-output name=version::${tag##*$'\n'}"
       - name: Push Image
-        uses: ./.github/workflows/common/push-images
+        uses: ./.github/workflows/composite-actions/push-images
         with:
           version: ${GITHUB_REF#refs/*/}
 
@@ -56,6 +56,6 @@ jobs:
           tag=$(git tag --points-at ${{ github.sha }})
           echo "::set-output name=version::${tag##*$'\n'}"
       - name: Build Flex Templates
-        uses: ./.github/workflows/common/flex-template
+        uses: ./.github/workflows/composite-actions/flex-template
         with:
           version: ${GITHUB_REF#refs/*/}
