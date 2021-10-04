@@ -8,4 +8,5 @@ runs:
   using: "composite"
   steps:
     - name: Print Version
+      shell: bash
       run: echo Version is ${{ inputs.version }}.
