@@ -1,10 +1,13 @@
 name: Deploy
+# This is similar to deploy.yaml from statement-ingest used to manage release tags.
 "on":
   push:
     tags:
       - "v[0-9].[0-9]+.[0-9]+"
 
 jobs:
+# https://github.com/marketplace/actions/wait-on-checkissues having issues waiting for checks in workflows to finish.
+# Ex: https://github.com/syrils/demo-gha-workflow/runs/3785198041?check_suite_focus=true
 #  wait-for-check-name:
 #    runs-on: ubuntu-latest
 #    steps:

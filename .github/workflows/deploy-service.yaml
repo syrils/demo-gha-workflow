@@ -1,5 +1,5 @@
 name: Deploy Service
-
+# This is similar to deploy-copytrigger.yaml from statement-ingest
 on:
   workflow_run:
     workflows:

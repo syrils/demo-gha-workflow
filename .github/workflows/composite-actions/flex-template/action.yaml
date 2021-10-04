@@ -1,3 +1,4 @@
+# Reusable step to build a flex template.
 name: 'Flex Template'
 description: 'Build Flex Template'
 inputs:

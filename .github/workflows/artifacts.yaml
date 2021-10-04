@@ -1,4 +1,5 @@
 name: Prepare Artifacts
+# This is similar to Prepare Artifacts workflow from statement-ingest
 on:
   workflow_run:
     workflows:
