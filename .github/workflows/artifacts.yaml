@@ -35,8 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A demo workflow
     steps:
-      - uses: actions/checkout@v2
       - id: foo
-        uses: syrils/demo-gha-workflow@main
+        uses: ./.github/action.yaml
         with:
           version: ${GITHUB_REF#refs/*/}
