@@ -44,10 +44,10 @@ jobs:
 
   demo-reusable-step:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A demo workflow
     steps:
       - uses: actions/checkout@v2
       - id: foo
-        uses: actions/prepare-artifacts-composite-action@v1
+        uses: actions/demo-gha-workflow@master
         with:
           version: ${GITHUB_REF#refs/*/}
