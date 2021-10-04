@@ -1,5 +1,5 @@
-name: 'reuse'
-description: 'Artifacts'
+name: 'Prepare Artifacts'
+description: 'Prepare Artifacts'
 inputs:
   version:  # id of input
     description: 'version'
@@ -9,4 +9,6 @@ runs:
   steps:
     - name: Print Version
       shell: bash
-      run: echo Version is ${{ inputs.version }}.
+      run: |
+      echo Version is ${{ inputs.version }}.
+      echo Git REF is ${GITHUB_REF#refs/*/}.

@@ -36,7 +36,7 @@ jobs:
     name: A demo workflow
     steps:
       - uses: actions/checkout@v1
-      - name: Demo
+      - name: Reuse a Step
         uses: ./.github
         with:
           version: ${GITHUB_REF#refs/*/}
