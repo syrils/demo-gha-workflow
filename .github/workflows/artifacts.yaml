@@ -37,6 +37,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: foo
-        uses: ./.github/workflows/action.yaml
+        uses: .github/action.yaml
         with:
           version: ${GITHUB_REF#refs/*/}
