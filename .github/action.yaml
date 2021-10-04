@@ -10,5 +10,5 @@ runs:
     - name: Print Version
       shell: bash
       run: |
-      echo Version is ${{ inputs.version }}.
-      echo Git REF is ${GITHUB_REF#refs/*/}.
+        echo Version is ${{ inputs.version }}.
+        echo "Output of Ref is: ${{github.ref}}"
