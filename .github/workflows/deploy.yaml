@@ -42,12 +42,14 @@ jobs:
           tag=$(git tag --points-at ${{ github.sha }})
           echo "::set-output name=version::${tag##*$'\n'}"
 
-  demo-reusable-step:
+  flex-templates:
     runs-on: ubuntu-latest
-    name: A demo workflow
     steps:
-      - uses: actions/checkout@v1
-      - name: Reuse a Step
-        uses: ./.github
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Build Flex Templates
+        uses: ./.github/workflows/composite-actions/flex-template
         with:
           version: ${GITHUB_REF#refs/*/}
