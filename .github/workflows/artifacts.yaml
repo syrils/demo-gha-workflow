@@ -37,6 +37,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: foo
-        uses: demo-gha-workflow/reuse@main
+        uses: syrils/demo-gha-workflow@main
         with:
           version: ${GITHUB_REF#refs/*/}
