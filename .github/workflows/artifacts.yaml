@@ -37,6 +37,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Demo
-        uses: ./.github/action.yaml
+        uses: ./.github
         with:
           version: ${GITHUB_REF#refs/*/}
