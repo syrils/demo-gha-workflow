@@ -1,4 +1,4 @@
-name: 'Prepare Artifacts'
+name: 'reuse'
 description: 'Artifacts'
 inputs:
   version:  # id of input

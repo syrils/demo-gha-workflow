@@ -37,6 +37,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: foo
-        uses: .github/action.yaml
+        uses: demo-gha-workflow/reuse@main
         with:
           version: ${GITHUB_REF#refs/*/}
