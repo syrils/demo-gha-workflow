@@ -35,7 +35,8 @@ jobs:
     runs-on: ubuntu-latest
     name: A demo workflow
     steps:
-      - id: foo
+      - uses: actions/checkout@v1
+      - name: Demo
         uses: ./.github/action.yaml
         with:
           version: ${GITHUB_REF#refs/*/}
