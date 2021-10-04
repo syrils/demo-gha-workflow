@@ -41,3 +41,13 @@ jobs:
         run: |
           tag=$(git tag --points-at ${{ github.sha }})
           echo "::set-output name=version::${tag##*$'\n'}"
+
+  demo-reusable-step:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v2
+      - id: foo
+        uses: actions/prepare-artifacts-composite-action@v1
+        with:
+          version: ${GITHUB_REF#refs/*/}

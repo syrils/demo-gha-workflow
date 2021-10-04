@@ -1,0 +1,11 @@
+name: 'Prepare Artifacts'
+description: 'Artifacts'
+inputs:
+  version:  # id of input
+    description: 'version'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Print Version
+      run: echo Version is ${{ inputs.version }}.
