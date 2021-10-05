@@ -13,3 +13,6 @@ runs:
       run: |
         echo Version is ${{ inputs.version }}.
         echo "Output of Ref is: ${{github.ref}}"
+    - name: Build Docker image
+      run: |
+        docker build . --tag=demo-app:latest
