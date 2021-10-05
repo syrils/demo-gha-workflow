@@ -35,6 +35,7 @@ jobs:
     steps:
       - name: Wait for checks
         run: Echo Waiting for tests
+        shell: bash
 
 #  wait-for-quality-gate:
 #    runs-on: ubuntu-latest
