@@ -14,4 +14,5 @@ runs:
         echo Version is ${{ inputs.version }}.
         echo "Output of Ref is: ${{github.ref}}"
     - name: Build Docker image
+      shell: bash
       run: make app-image
