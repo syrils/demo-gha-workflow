@@ -29,13 +29,13 @@ jobs:
         run: sleep 30s
         shell: bash
 
-  quality-gate:
-    runs-on: ubuntu-latest
-    needs: [bb-test, test-coverage]
-    steps:
-      - name: Wait for checks
-        run: echo "All tests completed"
-        shell: bash
+#  quality-gate:
+#    runs-on: ubuntu-latest
+#    needs: [bb-test, test-coverage]
+#    steps:
+#      - name: Wait for checks
+#        run: echo "All tests completed"
+#        shell: bash
 
 #  wait-for-quality-gate:
 #    runs-on: ubuntu-latest

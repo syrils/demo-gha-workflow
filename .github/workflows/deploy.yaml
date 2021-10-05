@@ -6,25 +6,48 @@ name: Deploy
       - "v[0-9].[0-9]+.[0-9]+"
 
 jobs:
-# https://github.com/marketplace/actions/wait-on-checkissues having issues waiting for checks in workflows to finish.
-# Ex: https://github.com/syrils/demo-gha-workflow/runs/3785198041?check_suite_focus=true
-  wait-for-check-name:
+#  wait-for-check-name:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#
+#      - name: Wait on tests
+#        uses: lewagon/wait-on-check-action@master
+#        with:
+#          ref: ${{ github.ref }}
+#          repo-token: ${{ secrets.GITHUB_TOKEN }}
+#          running-workflow-name: wait-for-check-name
+#          wait-interval: 10
+
+  push-images:
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Wait on tests
-        uses: lewagon/wait-on-check-action@master
         with:
-          ref: ${{ github.ref }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          running-workflow-name: wait-for-check-name
-          wait-interval: 10
+          fetch-depth: 0
+      - name: Push Image
+        uses: ./.github/workflows/composite-actions/push-images
+        with:
+          version: ${GITHUB_REF#refs/*/}
+
+  flex-templates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Build Flex Templates
+        uses: ./.github/workflows/composite-actions/flex-template
+        with:
+          version: ${GITHUB_REF#refs/*/}
 
   generate-manifests:
     runs-on: ubuntu-latest
-#    needs: wait-for-check-name
+    needs: [push-images, flex-templates]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -43,15 +66,3 @@ jobs:
         run: |
           tag=$(git tag --points-at ${{ github.sha }})
           echo "::set-output name=version::${tag##*$'\n'}"
-
-  flex-templates:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Build Flex Templates
-        uses: ./.github/workflows/composite-actions/flex-template
-        with:
-          version: ${GITHUB_REF#refs/*/}
