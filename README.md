@@ -34,10 +34,11 @@
    * Using the `check-name` to wait on a specific check does not have an option to wait till a specified check is completed. The check that we want might still be running but the `wait-on-check-action` will fail thinking that the check never ran.
 - [Reusable workflows](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows)  - Not suited for our use-case as we can only reuse few steps from the workflow and not the entire workflow. This is due to difference in how we get a `github.ref` for `workflow_run` vs tag push and additional workflow_run related if conditions
   which is not required for tag push workflow(i.e. deploy.yaml).
-- [Reusable actions](https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition) - This can be used to reduce some duplicate steps used across workflows.
+- [Reusable actions](https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition) - This can be used to reduce some duplicate steps used across workflows. This repo has an example of composite actions in folder `composite-actions`. Note that composite actions require 
+  a file named action.yml or action.yaml. Other file names are not supported.
 
 # Proposed solution
 * This is to solve for the problem described in issue https://github.com/anzx/fabric-statement-ingest/issues/919.
-* Keep the `artifacts.yaml` and `deploy-service.yaml` workflows as is - As mentioned above this is currently working for the default branch (main or master) and versys created rc tags. Refactor the Use `artifacts.yaml` to use the `push-image` and `flex-template`
+* Keep the `artifacts.yaml` and `deploy-service.yaml` workflows as is - As mentioned above this is currently working for the default branch (main or master) and versys created rc tags. Refactor the `artifacts.yaml` workflow to use the `push-image` and `flex-template`
   steps from the `composite-actions`(i.e. reuse actions).
 * Refactor the `deploy.yaml` workflow used for release tag push event to include the `push-image` and `flex-template` steps from the `composite-actions`.
