@@ -9,7 +9,6 @@ runs:
   using: "composite"
   steps:
     - name: Checkout repository
-      shell: bash
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
