@@ -25,7 +25,8 @@
   https://github.com/syrils/demo-gha-workflow/runs/3763417255?check_suite_focus=true
   
 * In the `statement-ingest` repo the `workflow_run` trigger looks like it works for tags like [v1.8.0-rc.17](https://github.com/anzx/fabric-statement-ingest/releases/tag/v1.8.0-rc.17). Note that
-this tag was created automatically by the versys step and not created manually. I still haven't understood how this automated tag push triggers the workflow_run. Irrespective of how it is working, the problem that needs to be addressed is proper CI for manual tag push event when preparing a release candidate.
+  this tag was created automatically by the versys step and not created manually. I still haven't understood how this automated tag push triggers the workflow_run. Irrespective of how it is working, the problem that needs to be addressed is 
+  to have a correct CI run for manual tag push event when preparing a release candidate.
  
 # Options Explored
 - [Wait on check action](https://github.com/marketplace/actions/wait-on-check) - This is an action available from the github marketplace. I found a number of issues trying to integrate this for our usecase. Some problems as mentioned below:
@@ -36,6 +37,7 @@ this tag was created automatically by the versys step and not created manually. 
 - [Reusable actions](https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition) - This can be used to reduce some duplicate steps used across workflows.
 
 # Proposed solution
+* This is to solve for the problem described in issue https://github.com/anzx/fabric-statement-ingest/issues/919.
 * Keep the `artifacts.yaml` and `deploy-service.yaml` workflows as is - As mentioned above this is currently working for the default branch (main or master) and versys created rc tags. Refactor the Use `artifacts.yaml` to use the `push-image` and `flex-template`
   steps from the `composite-actions`(i.e. reuse actions).
 * Refactor the `deploy.yaml` workflow used for release tag push event to include the `push-image` and `flex-template` steps from the `composite-actions`.
