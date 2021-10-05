@@ -8,10 +8,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - name: Setup Java
+      uses: actions/setup-java@v1
       with:
-        fetch-depth: 0
+        java-version: '8'
     - name: Do Some Job
       shell: bash
       run: |
