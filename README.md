@@ -29,13 +29,13 @@ this tag was created automatically by the versys step and not created manually. 
  
 # Options Explored
 - [Wait on check action](https://github.com/marketplace/actions/wait-on-check) - This is an action available from the github marketplace. I found a number of issues trying to integrate this for our usecase. Some problems as mentioned below:
-   * No clear way to define wait-on-check running in other workflow.
-   * Using the `running-workflow-name` waits for all checks to complete across workflows. This can be an issue if some checks are already running on master and release candidate tag is waiting for unnecessary checks to be completed.
-   * Using the `check-name` to wait on a specific check does not have an option to wait till a specified check is completed. The check that we want might still be running but the `wait-on-check-action` will fail thinking the check never ran.
-- [Reusable workflows](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows)  - Not suited for our usecase as we can only reuse few steps not the entire workflow.
+   * Using the `running-workflow-name` waits for all checks to complete across workflows. This can be an issue if some checks are already running on master and release candidate tag ends up waiting for unnecessary checks to be completed to proceed further. 
+   * Using the `check-name` to wait on a specific check does not have an option to wait till a specified check is completed. The check that we want might still be running but the `wait-on-check-action` will fail thinking that the check never ran.
+- [Reusable workflows](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows)  - Not suited for our use-case as we can only reuse few steps from the workflow and not the entire workflow. This is due to difference in how we get a `github.ref` for `workflow_run` vs tag push and additional workflow_run related if conditions
+  which is not required for tag push workflow(i.e. deploy.yaml).
 - [Reusable actions](https://github.blog/changelog/2021-08-25-github-actions-reduce-duplication-with-action-composition) - This can be used to reduce some duplicate steps used across workflows.
 
 # Proposed solution
-* Keep the `artifacts.yaml` and `deploy-service.yaml` workflows as is - As mentioned above this is currently working for master branch and versys created rc tags. Use the `push-image` and `flex-template`
+* Keep the `artifacts.yaml` and `deploy-service.yaml` workflows as is - As mentioned above this is currently working for the default branch (main or master) and versys created rc tags. Refactor the Use `artifacts.yaml` to use the `push-image` and `flex-template`
   steps from the `composite-actions`(i.e. reuse actions).
 * Refactor the `deploy.yaml` workflow used for release tag push event to include the `push-image` and `flex-template` steps from the `composite-actions`.
