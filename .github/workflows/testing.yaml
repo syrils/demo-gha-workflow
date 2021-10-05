@@ -34,7 +34,7 @@ jobs:
     needs: [bb-test, test-coverage]
     steps:
       - name: Wait for checks
-        run: Echo Waiting for tests
+        run: echo "All tests completed"
         shell: bash
 
 #  wait-for-quality-gate:
