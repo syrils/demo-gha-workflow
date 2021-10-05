@@ -12,3 +12,7 @@ test: ## Runs unit tests and generates a coverage file at coverage.out
 			-race -covermode=atomic -json \
 			-coverprofile=$(COVER_FILE) \
 			| tee $(TEST_JSON)
+
+.PHONY: app-image
+app-image:
+	 docker build . --tag=demo-app:latest
