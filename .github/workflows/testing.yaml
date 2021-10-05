@@ -37,14 +37,13 @@ jobs:
 #      - name: Wait for checks
 #        run: Echo Waiting for tests
 
-#  wait-for-quality-gate:
-#    name: Wait for testing
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Wait for tests to succeed
-#        uses: lewagon/wait-on-check-action@master
-#        with:
-#          ref: ${{ github.ref }}
-#          running-workflow-name: wait-for-quality-gate
-#          repo-token: ${{ secrets.GITHUB_TOKEN }}
-#          wait-interval: 10
+  wait-for-quality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@master
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: wait-for-quality-gate
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10

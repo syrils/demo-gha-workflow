@@ -8,20 +8,20 @@ name: Deploy
 jobs:
 # https://github.com/marketplace/actions/wait-on-checkissues having issues waiting for checks in workflows to finish.
 # Ex: https://github.com/syrils/demo-gha-workflow/runs/3785198041?check_suite_focus=true
-#  wait-for-check-name:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#
-#      - name: Wait on tests
-#        uses: lewagon/wait-on-check-action@master
-#        with:
-#          ref: ${{ github.ref }}
-#          repo-token: ${{ secrets.GITHUB_TOKEN }}
-#          check-name:  'Wait for testing'
-#          running-workflow-name: wait-for-check-name
-#          wait-interval: 10
+  wait-for-check-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Wait on tests
+        uses: lewagon/wait-on-check-action@master
+        with:
+          ref: ${{ github.ref }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          check-name:  'wait-for-quality-gate'
+          running-workflow-name: wait-for-check-name
+          wait-interval: 10
 
   generate-manifests:
     runs-on: ubuntu-latest
