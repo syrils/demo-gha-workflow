@@ -5,6 +5,7 @@ on:
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
+    if: contains(github.ref, 'refs/tags/*/docbox') == false
     steps:
       - uses: actions/setup-go@v2
         with:
@@ -24,6 +25,7 @@ jobs:
 
   bb-test:
     runs-on: ubuntu-latest
+    if: contains(github.ref, 'refs/tags/*/docbox') == false
     steps:
       - name: Sleep for few seconds
         run: sleep 30s
