@@ -4,7 +4,7 @@ on:
 
 jobs:
   test-coverage:
-    if: ${{ !(startsWith(github.ref, 'tags/') && contains(github.ref, 'docbox')) }}
+    if: ${{ !(startsWith(github.ref, 'refs/tags/') && contains(github.ref, 'docbox')) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v2
@@ -27,7 +27,7 @@ jobs:
 
   bb-test:
     runs-on: ubuntu-latest
-    if: ${{ !(startsWith(github.ref, 'tags/') && contains(github.ref, 'docbox')) }}
+    if: ${{ !(startsWith(github.ref, 'refs/tags/') && contains(github.ref, 'docbox')) }}
     steps:
       - name: Sleep for few seconds
         run: sleep 30s
