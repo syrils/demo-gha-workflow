@@ -1,6 +1,8 @@
 name: Testing
 on:
   push:
+    tags-ignore:
+      - 'refs/tags/*/docbox'
 
 jobs:
   test-coverage:
