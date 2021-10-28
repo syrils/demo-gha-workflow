@@ -4,7 +4,7 @@ on:
 
 jobs:
   test-coverage:
-    if: ${{ !contains(github.ref, 'refs/tags/*/docbox') }}
+    if: ${{ !contains(github.ref, 'docbox') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v2
@@ -23,12 +23,11 @@ jobs:
           echo "Output of SHA is: ${{github.sha}}"
           echo ${{ !startsWith(github.ref, 'refs/tags/*/docbox') }}
           echo ${{ !contains(github.ref, 'docbox') }}
-          echo ${{ github.event.ref  =~ 'refs/tags/*/docbox' }}
           make test
 
   bb-test:
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.ref, 'refs/tags/*/docbox') }}
+    if: ${{ !contains(github.ref, 'docbox') }}
     steps:
       - name: Sleep for few seconds
         run: sleep 30s
