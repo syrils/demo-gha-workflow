@@ -5,7 +5,7 @@ on:
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
-    if: ${{ github.ref != 'refs/tags/*/docbox' }}
+    if: "!contains(github.ref, 'refs/tags/*/docbox')"
     steps:
       - uses: actions/setup-go@v2
         with:
