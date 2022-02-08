@@ -64,3 +64,24 @@ jobs:
         uses: ./.github/workflows/composite-actions/flex-template
         with:
           version: ${GITHUB_REF#refs/*/}
+
+  manifest-sync:
+    if: github.event.workflow_run.conclusion == 'success'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - component: CFComponent
+            configdir: config
+          - component: DFComponent
+            configdir: java/config/
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Generate manifest
+        run: |
+          echo {{ matrix.component }}
+          echo {{ matrix.configdir }}
