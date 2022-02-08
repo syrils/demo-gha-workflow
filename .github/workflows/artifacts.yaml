@@ -83,5 +83,5 @@ jobs:
           fetch-depth: 0
       - name: Generate manifest
         run: |
-          echo "{{ matrix.component }}"
-          echo {{ matrix.configdir }}
+          echo ${{ matrix.component }}
+          echo ${{ matrix.configdir }}
